@@ -1,0 +1,6 @@
+services:
+  - type: worker
+    name: smv-oracle-analyzer
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
