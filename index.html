@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SMV ORACLE — EUR/USD Live</title>
+<style>
+:root{color-scheme:dark}
+body{margin:0;background:#0e1117;color:#e7edf4;font-family:Arial,sans-serif}
+header{padding:18px 22px;border-bottom:1px solid #29303b;background:#151922}
+h1{font-size:22px;margin:0 0 5px}
+.sub{color:#9aa5b4}
+main{display:grid;grid-template-columns:2fr 1fr;gap:14px;padding:14px}
+.card{background:#151922;border:1px solid #29303b;border-radius:10px;overflow:hidden}
+.title{padding:12px 14px;border-bottom:1px solid #29303b;font-weight:700}
+iframe{display:block;width:100%;height:680px;border:0}
+.panel{padding:14px}
+.row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #252c36}
+.muted{color:#9aa5b4}.on{color:#8ee69a}.wait{color:#ffd166}.off{color:#ff8e8e}
+.note{margin-top:14px;padding:12px;border-radius:8px;background:#202632;color:#c8d0da;line-height:1.45}
+@media(max-width:900px){main{grid-template-columns:1fr}iframe{height:520px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>SMV ORACLE — EUR/USD</h1>
+  <div class="sub">Analyseur préparatoire • lecture seule • aucune exécution d'ordre</div>
+</header>
+<main>
+<section class="card">
+  <div class="title">EUR/USD — marché en direct</div>
+  <iframe src="https://www.tradingview.com/widgetembed/?symbol=FX%3AEURUSD&interval=5&theme=dark&style=1&timezone=Africa%2FDouala&hideideas=1&hidevolume=1" allowtransparency="true" loading="eager"></iframe>
+</section>
+<aside class="card">
+  <div class="title">Moteur SMV</div>
+  <div class="panel">
+    <div class="row"><span class="muted">Structure HH / HL / LL / LH</span><b class="on">ACTIVE</b></div>
+    <div class="row"><span class="muted">Swing majeur HTF</span><b class="on">MODULE</b></div>
+    <div class="row"><span class="muted">Swing interne LTF</span><b class="on">MODULE</b></div>
+    <div class="row"><span class="muted">Liquidité</span><b class="wait">À DÉFINIR ORACLE</b></div>
+    <div class="row"><span class="muted">Zones d'intervention</span><b class="wait">À DÉFINIR ORACLE</b></div>
+    <div class="row"><span class="muted">Order Blocks</span><b class="wait">À DÉFINIR ORACLE</b></div>
+    <div class="row"><span class="muted">Breaker Blocks</span><b class="wait">À DÉFINIR ORACLE</b></div>
+    <div class="row"><span class="muted">Raffinage</span><b class="wait">À DÉFINIR ORACLE</b></div>
+    <div class="row"><span class="muted">Swing / Intraday</span><b class="wait">À DÉFINIR ORACLE</b></div>
+    <div class="row"><span class="muted">Entrée précise</span><b class="wait">À DÉFINIR ORACLE</b></div>
+    <div class="row"><span class="muted">Ordres réels</span><b class="off">DÉSACTIVÉS</b></div>
+    <div class="note"><b>Important :</b> cette page montre le marché EUR/USD en direct. Le prototype Python a pour l'instant la logique de structure que nous avons explicitement définie. Les autres blocs attendent les règles exactes d'ORaCLE Trading.</div>
+  </div>
+</aside>
+</main>
+</body>
+</html>
