@@ -1,0 +1,56 @@
+name: AI Worker - safe scan
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ai_worker/**"
+      - ".github/workflows/ai-worker.yml"
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ai_worker
+    env:
+      MARKETPLACE: near
+      MARKET_BASE_URL: https://market.near.ai
+      ENABLE_AUTONOMY: "false"
+      DRY_RUN: "true"
+      MIN_SCORE: "55"
+      ALLOWED_TAGS: python,api,github,documentation,research,data,automation
+      REQUIRED_KEYWORDS: python,api,docs,research,data,automation
+      MIN_REWARD_NEAR: "2"
+      MAX_ESTIMATED_HOURS: "6"
+      MIN_HOURLY_TARGET_USD: "2"
+      USD_PER_NEAR_ESTIMATE: "3"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      - name: Unit test
+        run: python tests/test_worker.py
+
+      - name: Live read-only scan
+        run: python -m worker.main --scan > scan.json
+
+      - name: Upload scan
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-worker-scan
+          path: ai_worker/scan.json
